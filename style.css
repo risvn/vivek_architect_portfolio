@@ -56,9 +56,19 @@ body {
 
 .hero {
   background: url('asssets/hero.png') center/cover no-repeat;
-  background: var(--tertiary);
-  text-align: center;
+  text-align: left;
   padding: 8rem 0;
+}
+.hero {
+  background: url('asssets/hero.png')  center right / contain no-repeat;
+  background-color: var(--tertiary);
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  transform: scale(1.2);
+  height: auto;
 }
 
 .hero h1 {
