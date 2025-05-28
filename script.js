@@ -10,3 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+
+
+
+   document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.project-card').forEach(card => {
+      const img = card.querySelector('img');
+      img.classList.add('blur-gray');
+
+      card.addEventListener('mouseenter', () => {
+        img.classList.remove('blur-gray');
+      });
+
+      card.addEventListener('mouseleave', () => {
+        img.classList.add('blur-gray');
+      });
+    });
+  });
