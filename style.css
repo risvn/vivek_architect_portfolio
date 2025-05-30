@@ -177,13 +177,14 @@ body {
 }
 
 .blur-gray {
-  filter: grayscale(75%) blur(1.5px);
+  filter: grayscale(25%) blur(0.5px);
   transition: filter 0.8s ease;
 }
 
+
+
 .projects {
-  
-  max-width: 1200px;
+  max-width: 100%; /* or whatever fits your layout better */
   margin: 0 auto;
   padding: 2rem;
   background-color: var(--tertiary);
@@ -197,19 +198,27 @@ body {
   color: var(--primary);
 }
 
+
+
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr); /* exactly 3 cards per row */
+  gap: 0.8rem; /* more space between cards */
+  max-width: 1400px; /* or whatever width looks good */
+  margin: 0 auto; /* center grid inside full-width .projects */
 }
+
+
+
 
 .project-card {
   background: var(--white);
-  border-radius: 0.75rem;
+  border-radius: 0.25rem;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 
 .project-card:hover {
   transform: scale(1.045);
@@ -223,7 +232,8 @@ body {
 }
 
 .project-card .info {
-  padding: 1rem;
+  padding: 0.75rem;
+  background:var(--mid-gray);
 }
 
 .project-card .info h3 {
@@ -238,11 +248,89 @@ body {
   margin-top: 0.5rem;
 }
 
+@media (max-width: 1024px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+.contact-section {
+  padding: 3rem 2rem;
+  background-color: var(--light-gray);
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #111;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  text-align: left;
+  background-color: #f3f3f3;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 320px;
+}
+
+.contact-item i {
+  font-size: 1.8rem;
+  color: #444;
+  padding: 0.5rem;
+  background-color: #e0e0e0;
+  border-radius: 0.5rem;
+}
+
+.contact-item h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.contact-item p {
+  margin: 0.3rem 0 0 0;
+  font-size: 0.95rem;
+  color: #555;
+}
 footer {
-  background: var(--primary);
+  background: var(--dark-gray);
   color: var(--white);
   text-align: center;
   padding: 2rem 0;
+}
+.container a {
+  color: inherit; /* Use same color as parent (e.g. the text) */
+  text-decoration: none; /* Remove underline if you want */
+}
+
+.container a:hover {
+  text-decoration: underline; /* Optional: add underline on hover */
+  color: var(--mid-gray) /* Or any visible shade you prefer */
 }
 
 a {
