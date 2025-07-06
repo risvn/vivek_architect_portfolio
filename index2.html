@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Minimal Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- AOS (Animate On Scroll) Styles -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar" data-aos="fade-down">
+    <div class="logo">
+      <img src="asssets/logo.png" alt="Logo" class="logo-img" />
+    </div>
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <ul class="nav-list" id="nav-list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Portfolio</a></li>
+      <li><a href="#contact">Contact Me</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="container" data-aos="fade-up">
+      <h1>Hello</h1>
+      <p>--It's Vivek, architectural designer.</p>
+    </div>
+  </header>
+
+  <section class="about" id="about" data-aos="fade-up">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>
+        Hi, I’m <strong>Talla Vivek</strong>, a passionate <strong>Civil Engineer</strong> and <strong>Freelance Designer</strong> based in Hyderabad. I specialize in transforming floor plans and elevations into functional, aesthetic spaces that elevate the end-user experience.
+      </p>
+      <p>Let’s build something exceptional together.</p>
+      <h3>FLOOR VISTA</h3>
+      <p>
+        Our company specializes in providing top-notch architectural design services tailored to residential projects. We offer Vastu-compliant floor plans, structural drawings, and elevation designs, ensuring each design is creative, functional, and aesthetically pleasing.
+        We are dedicated to delivering high-quality results with meticulous attention to detail and innovation.
+      </p>
+    </div>
+  </section>
+
+  <section class="services" id="services" data-aos="fade-up">
+    <div class="container">
+      <h2>Services</h2>
+      <div class="service-grid">
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+          <h3>Building Planning</h3>
+          <p>We create Vastu-compliant, space-efficient building plans tailored to your specific requirements and site conditions.</p>
+        </div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+          <h3>Elevation Design</h3>
+          <p>Our creative elevation designs enhance your building’s appearance with a focus on aesthetics, proportion, and client preferences.</p>
+        </div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+          <h3>Structural Detailing</h3>
+          <p>We provide precise structural drawings and reinforcements that ensure safety, durability, and compliance with engineering standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects" id="projects" data-aos="fade-up">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="asssets/projects/project_001.jpg" alt="Project 1" />
+        <div class="info">
+          <h3>Project One</h3>
+          <p>A brief description of the first project goes here.</p>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="asssets/projects/project_008.jpg" alt="Project 2" />
+        <div class="info">
+          <h3>Project Two</h3>
+          <p>This is a description of the second project.</p>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="asssets/projects/project_003.jpg" alt="Project 3" />
+        <div class="info">
+          <h3>Project Three</h3>
+          <p>Details about the third project are shown here.</p>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+        <img src="asssets/projects/project_004.jpg" alt="Project 4" />
+        <div class="info">
+          <h3>Project Four</h3>
+          <p>Details about the fourth project are shown here.</p>
+        </div>
+      </div>
+
+      <!-- Add more cards the same way -->
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <div class="contact-grid">
+      <div class="contact-item" data-aos="fade-right">
+        <i class="fas fa-phone"></i>
+        <div>
+          <h4>Phone</h4>
+          <p>+91 8341208733</p>
+        </div>
+      </div>
+      <div class="contact-item" data-aos="fade-right" data-aos-delay="100">
+        <i class="fas fa-map-marker-alt"></i>
+        <div>
+          <h4>Address</h4>
+          <p>Mancherial, Telangana, 504208</p>
+        </div>
+      </div>
+      <div class="contact-item" data-aos="fade-right" data-aos-delay="200">
+        <i class="fas fa-envelope"></i>
+        <div>
+          <h4>Email</h4>
+          <p>floorvista.aec@gmail.com</p>
+        </div>
+      </div>
+      <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
+        <i class="fas fa-globe"></i>
+        <div>
+          <h4>Website</h4>
+          <p>floorvista.homes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer data-aos="fade-up">
+    <div class="container">
+      <p>
+        <a href="https://risvn.github.io/risvn/" target="_blank" rel="noopener noreferrer">
+          &copy; 2025 rsvn
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+
+  <!-- Your JS -->
+  <script src="script.js"></script>
+</body>
+</html>
+
