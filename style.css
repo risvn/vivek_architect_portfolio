@@ -12,7 +12,7 @@
   --primary: #3B3A36;        /* Charcoal (cool neutral) */
   --secondary: #939681;      /* Olive gray */
   --tertiary: #D5C9B1;       /* Warm sand */
-  --white: #F5F5F5;          /* Off-white/ivory */
+  --white: #FFFFFF;          /* Off-white/ivory */
   --light-gray: #E0DCD0;     /* Stone/beige */
   --mid-gray: #A9A69A;       /* Ash gray */
   --dark-gray: #4A4E4D;      /* Slate gray */
@@ -82,7 +82,7 @@ body {
   background: url('asssets/final_hero.png') no-repeat;
   background-position: 98% center;
   background-size:cover;
-  background-color: var(--white);
+  background-color: var(--tertiary);
   height: 628px;
   display: flex;
   flex-direction: column;
