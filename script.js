@@ -12,68 +12,191 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.project-card').forEach(card => {
-      const img = card.querySelector('img');
-      img.classList.add('blur-gray');
-
-      card.addEventListener('mouseenter', () => {
-        img.classList.remove('blur-gray');
-      });
-
-      card.addEventListener('mouseleave', () => {
-        img.classList.add('blur-gray');
-      });
-    });
-  });
-
-  
+//TODO(rsvn):write the string maninpulation function to get the path
 
 
 
+let fileMeta=[
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("imageModal");
-  const modalImg = document.getElementById("modalImg");
-  const gallery = document.getElementById("gallery");
-  const totalImages = 8;
-  const folder = "asssets/images/";
+{"name":"work/img1.jpg",
+  "description":"STYLE: MODERN CONTEMPORARY"},
+{"name":"work/img2.jpg",
+    "description":"STYLE: MODERN CONTEMPORARY"},
+{"name":"work/img3.jpg",
+      "description":"STYLE: MODERN CONTEMPORARY"},  
+{"name":"work/img4.jpg",
+      "description":"STYLE: MODERN CONTEMPORARY"},  
+{"name":"work/img5.jpg",
+      "description":"STYLE: MODERN CONTEMPORARY"},  
+{"name":"work/img6.jpg",
+      "description":"STYLE: MODERN CONTEMPORARY"},  
+{"name":"work/img7.jpg",
+      "description":"STYLE: MODERN CONTEMPORARY"},  
+{"name":"work/img8.jpg",
+      "description":"STYLE: MODERN CONTEMPORARY"}  
 
-  for (let i = 1; i <= totalImages; i++) {
-    let img = document.createElement("img");
-    img.src = `${folder}img${i}.jpg`;
-    img.alt = `Image ${i}`;
 
-    let div = document.createElement("div");
-    div.className = "gallery-item";
-    div.appendChild(img);
+]
 
-    div.addEventListener("click", () => {
-       modal.classList.add("show");
-      modal.style.display = "flex";
-      modalImg.src = img.src;
-        modal.style.background = "rgba(0,0,0,0.7)";
-    });
 
-    gallery.appendChild(div);
+let filePath = fileMeta.map(item => item.name);
+console.log(filePath)
+
+
+
+
+// getcatption:name,json meta data -> str
+function getcaption(filename, metaData) {
+  for (const post of metaData) {
+    if (post.name === filename) {
+      return post.description|| null
+    }
+  }
+  return null; 
+}
+
+
+
+
+
+//createCard:path,caption->html card
+function createCard(mediaPath,mediaCaption){
+
+const gallery=document.getElementsByClassName('gallery')[0]
+const mediaCard = document.createElement('div');
+mediaCard.className = 'card';
+const thumbWrap = document.createElement('div');
+thumbWrap.className = 'thumb-wrap';
+
+
+const fileName = mediaPath.split(/[/.]/)[1]
+
+
+ if (/\.(mp4|webm|mov)$/i.test(mediaPath)) {
+    // For video
+    const video = document.createElement('video');
+    video.src = mediaPath;
+    video.controls = true;
+    video.className = 'thumb';
+    video.preload = 'metadata';
+    video.id=fileName;
+    thumbWrap.appendChild(video);
+  } else {
+    // For image
+    const img = document.createElement('img');
+    img.src = mediaPath;
+    img.className = 'thumb';
+    img.loading = 'lazy';
+    img.id=fileName;
+    thumbWrap.appendChild(img);
   }
 
-  // Close when clicking outside image
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-        modal.style.background = "none";
-    }
+const caption = document.createElement('div');
+caption.className = 'caption';
+const textPar = document.createElement('p');
+textPar.textContent = mediaCaption; 
+caption.appendChild(textPar);
+    
+
+mediaCard.appendChild(thumbWrap);
+mediaCard.appendChild(caption);
+gallery.appendChild(mediaCard);
+document.body.appendChild(gallery);
+
+//TODO(rsvn):ADD favourite,img,vid icon,thumbnail
+
+}
+
+//drawing image to the canvas
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("myCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const images = document.querySelectorAll(".gallery img");
+  images.forEach(img => {
+    img.addEventListener("click", () => {
+      canvas.style.display = "block";   // show canvas
+
+      if (img.complete) {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      } else {
+        img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      }
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.getElementById("overlay");
+  const canvas = document.getElementById("myCanvas");
+  const ctx = canvas.getContext("2d");
+  const closeBtn = document.getElementById("closeBtn");
+
+  const images = document.querySelectorAll(".gallery img");
+
+  images.forEach(img => {
+    img.addEventListener("click", () => {
+      overlay.style.display = "flex";      // show overlay
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw image, maintaining aspect ratio
+      const imgWidth = img.naturalWidth;
+      const imgHeight = img.naturalHeight;
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
+
+      let drawWidth = canvasWidth;
+      let drawHeight = canvasHeight;
+      const imgRatio = imgWidth / imgHeight;
+      const canvasRatio = canvasWidth / canvasHeight;
+
+      if (imgRatio > canvasRatio) {
+        drawHeight = canvasWidth / imgRatio;
+      } else {
+        drawWidth = canvasHeight * imgRatio;
+      }
+
+      const offsetX = (canvasWidth - drawWidth) / 2;
+      const offsetY = (canvasHeight - drawHeight) / 2;
+
+      if (img.complete) {
+        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+      } else {
+        img.onload = () => ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+      }
+    });
   });
 
-  // Close with Esc key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      modal.style.display = "none";
-        modal.style.background = "none";
+  // Close overlay
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+
+  // Optional: click outside canvas closes overlay
+  overlay.addEventListener("click", e => {
+    if (e.target === overlay) {
+      overlay.style.display = "none";
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
   });
 });
+
+
+
+filePath.forEach(fileName=>
+  {
+
+  let mediaCaption = getcaption(fileName,fileMeta)
+
+  //give the exact path to the file location
+  let filePath=fileName
+  createCard(filePath,mediaCaption)
+
+  }
+  )
+
+
+
 
